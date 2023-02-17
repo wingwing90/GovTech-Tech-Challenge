@@ -1,6 +1,9 @@
 import os
+import glob
 import csv
 import pandas as pd
+
+import re
 
 from datetime import date, datetime, timedelta
 
@@ -24,7 +27,11 @@ def latest_file():
     return latest_file
 
 def filter_data():
-    df = pd.read_csv("applications_dataset_1.csv",sep=',',)
+    df = pd.read_csv(latest_file(),sep=',')
+
+    success_df = df[(df['mobile_no'] == re.match(pattern="^\d{8}$", string=in_str)) & (df['email'] == re.match(pattern="\b[A-Za-z0-9_-]+@[A-Za-z0-9.-]+\.(com|net)\b", string=in_str))]
+
+    fail_df = 
 
 with DAG(
     dag_id=f"psp-isbank-fetcher-v{version}",
