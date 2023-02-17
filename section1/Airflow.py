@@ -14,6 +14,15 @@ default_args = {
     "retry_delay": timedelta(minutes=1),
 }
 
+def latest_file():
+    folder_path = r"GovTech-Tech-Challenge\section1\input_file"
+    file_type = r'\*.csv'
+    files = glob.glob(folder_path + file_type)
+    latest_file = max(files, key=os.path.getctime)
+    print(latest_file)
+
+    return latest_file
+
 def filter_data():
     df = pd.read_csv("applications_dataset_1.csv",sep=',',)
 
