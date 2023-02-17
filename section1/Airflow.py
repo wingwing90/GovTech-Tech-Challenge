@@ -1,3 +1,7 @@
+import os
+import csv
+import pandas as pd
+
 from datetime import date, datetime, timedelta
 
 from airflow import DAG
@@ -11,7 +15,7 @@ default_args = {
 }
 
 def filter_data():
-    
+    df = pd.read_csv("applications_dataset_1.csv",sep=',',)
 
 with DAG(
     dag_id=f"psp-isbank-fetcher-v{version}",
