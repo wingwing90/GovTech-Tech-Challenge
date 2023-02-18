@@ -59,6 +59,14 @@ def filter_data():
     success_df = fil_mobile_email_df[(fil_mobile_email_df['date_of_birth']) < "2006-01-01"]
 
     print(success_df)
+    
+    success_df.to_csv(r"GovTech-Tech-Challenge\section1\output_file\success.csv", sep=';', encoding='utf-8')
+    
+    failure_df = raw_df[~raw_df.index.isin(success_df.index)]
+    
+    print(failure_df)
+    
+    failure_df.to_csv(r"GovTech-Tech-Challenge\section1\output_file\fail.csv", sep=';', encoding='utf-8')
 
 with DAG(
     dag_id=f"psp-isbank-fetcher-v{version}",
