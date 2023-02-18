@@ -43,6 +43,22 @@ def filter_data():
     split_name_df = pd.concat([rename_first_last_name_df, raw_df.drop(['name'], axis=1)], axis=1)
     
     print(split_name_df)
+    
+    split_name_df['date_of_birth'] = pd.to_datetime(split_name_df.date_of_birth)
+    # .dt.strftime('%Y%m%d')
+    
+    format_date_df = split_name_df
+    
+    print("format_date_df")
+    print(format_date_df)
+
+    fil_mobile_email_df = format_date_df[(format_date_df['mobile_no'].str.contains("(\d{8})")) & (format_date_df['email'].str.match("[A-Za-z0-9_-]+@[A-Za-z0-9.-]+\.(com|net)"))]
+
+    print(fil_mobile_email_df)
+
+    success_df = fil_mobile_email_df[(fil_mobile_email_df['date_of_birth']) < "2006-01-01"]
+
+    print(success_df)
 
 with DAG(
     dag_id=f"psp-isbank-fetcher-v{version}",
