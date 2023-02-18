@@ -1,6 +1,6 @@
 CREATE TABLE ft_purchase
 (
-     id INT PRIMARY KEY
+     id SERIAL PRIMARY KEY
     ,create_ts TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
     ,update_ts TIMESTAMP NULL DEFAULT NULL
     ,purchase_id INT NOT NULL

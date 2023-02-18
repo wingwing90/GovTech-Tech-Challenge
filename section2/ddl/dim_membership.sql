@@ -1,6 +1,6 @@
 CREATE TABLE dim_membership
 (
-     id INT PRIMARY KEY
+     id SERIAL PRIMARY KEY
     ,create_ts TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP()
     ,update_ts TIMESTAMP NULL DEFAULT NULL
     ,first_name VARCHAR(30) NOT NULL
