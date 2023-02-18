@@ -27,11 +27,22 @@ def latest_file():
     return latest_file
 
 def filter_data():
-    df = pd.read_csv(latest_file(),sep=',')
+    raw_df = pd.read_csv(latest_file(),sep=',')
 
-    success_df = df[(df['mobile_no'] == re.match(pattern="^\d{8}$", string=in_str)) & (df['email'] == re.match(pattern="\b[A-Za-z0-9_-]+@[A-Za-z0-9.-]+\.(com|net)\b", string=in_str))]
-
-    fail_df = 
+    print(raw_df)
+    
+    name_df = raw_df[['name']]
+    
+    print(name_df)
+    
+    first_last_name_df = raw_df.name.str.split(" ", 1,expand=True)
+    rename_first_last_name_df = first_last_name_df.rename(columns={0:'first_name', 1:'last_name'})
+    
+    print(rename_first_last_name_df)
+    
+    split_name_df = pd.concat([rename_first_last_name_df, raw_df.drop(['name'], axis=1)], axis=1)
+    
+    print(split_name_df)
 
 with DAG(
     dag_id=f"psp-isbank-fetcher-v{version}",
