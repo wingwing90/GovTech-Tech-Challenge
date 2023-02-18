@@ -21,8 +21,8 @@ GROUP BY 1
 )
 
 SELECT
-membership_id
-ROW_NUMBER(sum_spend) OVER(ORDER BY sum_spend DESC) row_num
+ membership_id
+,ROW_NUMBER(sum_spend) OVER(ORDER BY sum_spend DESC) row_num
 FROM member_total_spend
 WHERE row_num <= 10
 ;
