@@ -10,4 +10,5 @@ CREATE TABLE ft_purchase
     ,CHECK (create_ts < update_ts)
     ,FOREIGN KEY (purchase_id) REFERENCES dim_purchase(id)
     ,FOREIGN KEY (item_id) REFERENCES dim_item(id)
+    ,CHECK (item_count > 0)
 )
