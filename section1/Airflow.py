@@ -58,6 +58,7 @@ def filter_data():
 
     print(fil_mobile_email_df)
 
+    # This question specified 2022-01-01. So it's ok to hardcode 2006-01-01
     success_df = fil_mobile_email_df[(fil_mobile_email_df['date_of_birth']) < "2006-01-01"]
 
     print(success_df)
@@ -71,8 +72,8 @@ def filter_data():
     failure_df.to_csv(r"GovTech-Tech-Challenge\section1\unsuccess\fail.csv", sep=';', encoding='utf-8')
 
 with DAG(
-    dag_id=f"psp-isbank-fetcher-v{version}",
-    description="Fetch reports from Isbank and load to Datahub",
+    dag_id=f"new-user-fetcher-v{version}",
+    description="Fetch new user",
     schedule_interval=" 0 * * * * ",
     default_args={**DAG_DEFAULT_ARGS, **default_args},
     max_active_runs=1,
@@ -82,7 +83,7 @@ with DAG(
 ) as dag:
 
     FilterData = PythonOperator(
-        task_id = "FilterData",
+        task_id = "FilterValidNewUser",
         python_callable = filter_data
     )
     
