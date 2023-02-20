@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 
 from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
 
 csv_file = r"C:\Users\wingw\Documents\repo\GovTech-Tech-Challenge\section5\car.csv"
 
@@ -24,3 +25,7 @@ print(raw_df)
 df_test, df_train = train_test_split(raw_df, test_size = 0.2, random_state = 1)
 
 print(df_train)
+
+regressor = LinearRegression
+
+regressor.fit(df_train)
